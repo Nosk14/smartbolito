@@ -6,6 +6,9 @@
 </head>
 <body>
     <a>Smartbolito de Navidad</a>
-Hello world
+    <br>
+    {% for behaviour in behaviours %}
+        <button type="button" class="btn btn-success btn-lg" onclick="console.log('{{ behaviour.function_name }}')">{{ behaviour.name }}</button>
+    {% endfor %}
 </body>
 </html>

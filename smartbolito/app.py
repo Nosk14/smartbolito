@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request
+from multiprocessing import Process
+from smartbolito.behaviours import behaviours
 
 
 api = Flask(__name__)
+current_process = None
+dict_behaviours = dict((b['function_name', b['function']]) for b in behaviours)
 
 
 @api.route('/', methods=['GET'])
 def main():
-    print("aja")
-    return render_template('home.html', functions=[])
+    return render_template('home.html', behaviours=behaviours)
 
 
 @api.route('/run', methods=['GET'])
@@ -16,10 +19,14 @@ def run():
     if not func_id:
         return 'Empty func parameter', 400
 
-    try:
-        func = getattr(None, func_id)
-        # stop previous function and run the actual in a thread
-    except AttributeError:
-        return 'Function does not exists', 404
+    if func_id not in dict_behaviours:
+        return 'Function not found', 404
+
+    global current_process
+    if current_process is not None:
+        current_process.kill()
+        current_process = Process(target=dict_behaviours[func_id])
+        current_process.daemon = True
+        current_process.start()
 
     return 'running ' + func_id, 200
