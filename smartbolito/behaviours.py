@@ -1,3 +1,5 @@
+from time import sleep, time
+
 
 behaviours = []
 
@@ -20,10 +22,15 @@ class Behaviour:
 
 @Behaviour("Foo")
 def foo():
-    pass
+    print("running Foo")
+    for i in range(3):
+        print(i)
+    print("bye from Foo")
 
 
-@Behaviour("Bar")
-def bar():
-    pass
+@Behaviour("Loop")
+def loop():
+    while True:
+        print("Looping -> " + str(time()))
+        sleep(5)
 
