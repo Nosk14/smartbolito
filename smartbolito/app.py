@@ -14,6 +14,7 @@ gunicorn_logger = logging.getLogger('gunicorn.error')
 api.logger.handlers = gunicorn_logger.handlers
 api.logger.setLevel(gunicorn_logger.level)
 
+turn_off()
 current_process = None
 process_pid = None
 dict_behaviours = dict((b['function_name'], b['function']) for b in behaviours)
