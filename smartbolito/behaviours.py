@@ -1,7 +1,12 @@
+import board
 from time import sleep, time
+from neopixel import NeoPixel, GRB
+from random import randint
 
+NUM_LEDS = 50
 
 behaviours = []
+leds = NeoPixel(board.D18, NUM_LEDS, auto_write=False, pixel_order=GRB)
 
 
 class Behaviour:
@@ -20,17 +25,30 @@ class Behaviour:
         return func
 
 
-@Behaviour("Foo")
-def foo():
-    print("running Foo")
-    for i in range(3):
-        print(i)
-    print("bye from Foo")
+def turn_off():
+    leds.fill((0, 0, 0))
+    leds.show()
 
 
-@Behaviour("Loop")
-def loop():
+@Behaviour("Alarm")
+def alarm():
     while True:
-        print("Looping -> " + str(time()))
-        sleep(5)
+        for i in range(NUM_LEDS):
+            leds[i] = (0, 255, 0)
+        leds.show()
+        sleep(1)
+        turn_off()
+        sleep(1)
+
+
+@Behaviour("Random")
+def random_colors():
+    colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255),
+              (255, 255, 0), (255, 0, 255), (0, 255, 255)]
+    while True:
+        i = randint(NUM_LEDS)
+        c = randint(len(colors))
+        leds[i] = colors[c]
+        leds.show()
+        sleep(0.25)
 

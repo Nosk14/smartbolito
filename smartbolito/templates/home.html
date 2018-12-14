@@ -21,7 +21,17 @@
     <script>
     function sendRequest(func_name) {
         const Http = new XMLHttpRequest();
-        const url='http://127.0.0.1:5000/run?func=' + func_name;
+        const url='http://{{ endpoint }}/run?func=' + func_name;
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange=(e)=>{
+            console.log(Http.responseText)
+        }
+    }
+
+    function turnOff() {
+        const Http = new XMLHttpRequest();
+        const url='http://{{ endpoint }}/off';
         Http.open("GET", url);
         Http.send();
         Http.onreadystatechange=(e)=>{
@@ -38,10 +48,15 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <img src="https://i.imgur.com/4IrDJuf.png" alt="Smartbolito de Navidad">
     <br>
-    <button type="button" class="btn btn-primary btn-lg" onclick="">Turn ON</button>
-    <button type="button" class="btn btn-primary btn-lg" onclick="">Turn OFF</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="turnOff()">Turn OFF</button>
+    <br>
+    <br>
     <br>
     <br>
     {% for behaviour in behaviours %}
