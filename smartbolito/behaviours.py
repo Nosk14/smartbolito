@@ -46,8 +46,8 @@ def random_colors():
     colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255),
               (255, 255, 0), (255, 0, 255), (0, 255, 255)]
     while True:
-        i = randint(0, NUM_LEDS)
-        c = randint(0, len(colors))
+        i = randint(0, NUM_LEDS-1)
+        c = randint(0, len(colors)-1)
         leds[i] = colors[c]
         leds.show()
         sleep(0.25)
