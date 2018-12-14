@@ -37,7 +37,7 @@ def run():
 
 
 @api.route('/off', methods=['GET'])
-def run():
+def off():
     global current_process
     if current_process is not None:
         current_process.kill()
