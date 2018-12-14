@@ -27,7 +27,7 @@ def run():
 
     global current_process
     if current_process is not None:
-        current_process.kill()
+        current_process.terminate()
 
     current_process = Process(target=dict_behaviours[func_id])
     current_process.daemon = True
@@ -40,7 +40,7 @@ def run():
 def off():
     global current_process
     if current_process is not None:
-        current_process.kill()
+        current_process.terminate()
 
     turn_off()
     return 'turned off', 200
