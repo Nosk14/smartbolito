@@ -1,12 +1,14 @@
 import board
+import os
 from time import sleep, time
 from neopixel import NeoPixel, GRB
 from random import randint
 
+
 NUM_LEDS = 50
 
 behaviours = []
-leds = NeoPixel(board.D18, NUM_LEDS, auto_write=False, pixel_order=GRB)
+leds = NeoPixel(board.D18, NUM_LEDS, auto_write=False, pixel_order=GRB, brightness=float(os.getenv("BRIGHTNESS", "0.2")))
 
 
 class Behaviour:

@@ -27,6 +27,7 @@ def run():
 
     global current_process
     if current_process is not None:
+        print("killing process " + str(current_process.pid))
         current_process.terminate()
         current_process.join(2)
 
@@ -34,13 +35,14 @@ def run():
     current_process.daemon = True
     current_process.start()
 
-    return 'running ' + func_id, 200
+    return 'running ' + func_id + ' on ' + str(current_process.pid), 200
 
 
 @api.route('/off', methods=['GET'])
 def off():
     global current_process
     if current_process is not None:
+        print("killing process " + str(current_process.pid))
         current_process.terminate()
         current_process.join(2)
 
