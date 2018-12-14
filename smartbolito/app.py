@@ -1,4 +1,5 @@
 import os
+import logging
 from flask import Flask, render_template, request
 from multiprocessing import Process
 from smartbolito.behaviours import behaviours, turn_off
@@ -7,6 +8,11 @@ from smartbolito.behaviours import behaviours, turn_off
 endpoint = os.getenv("ENDPOINT", "localhost:5000")
 
 api = Flask(__name__)
+
+gunicorn_logger = logging.getLogger('gunicorn.error')
+api.logger.handlers = gunicorn_logger.handlers
+api.logger.setLevel(gunicorn_logger.level)
+
 current_process = None
 dict_behaviours = dict((b['function_name'], b['function']) for b in behaviours)
 
@@ -27,7 +33,7 @@ def run():
 
     global current_process
     if current_process is not None:
-        print("killing process " + str(current_process.pid))
+        api.logger.info("killing process " + str(current_process.pid))
         current_process.terminate()
         current_process.join(2)
 
@@ -42,7 +48,7 @@ def run():
 def off():
     global current_process
     if current_process is not None:
-        print("killing process " + str(current_process.pid))
+        api.logger.info("killing process " + str(current_process.pid))
         current_process.terminate()
         current_process.join(2)
 
