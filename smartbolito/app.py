@@ -3,12 +3,14 @@ import logging
 import signal
 from flask import Flask, render_template, request
 from multiprocessing import Process
+from threading import Lock
 from smartbolito.behaviours import behaviours, turn_off
 
 
 endpoint = os.getenv("ENDPOINT", "localhost:5000")
 
 api = Flask(__name__)
+lock = Lock()
 
 gunicorn_logger = logging.getLogger('gunicorn.error')
 api.logger.handlers = gunicorn_logger.handlers
@@ -34,16 +36,17 @@ def run():
     if func_id not in dict_behaviours:
         return 'Function not found', 404
 
-    stop_process()
+    with lock:
+        stop_process()
 
-    global current_process
-    current_process = Process(target=dict_behaviours[func_id])
-    current_process.daemon = True
-    current_process.start()
-    global process_pid
-    process_pid = current_process.pid
+        global current_process
+        current_process = Process(target=dict_behaviours[func_id])
+        current_process.daemon = True
+        current_process.start()
+        global process_pid
+        process_pid = current_process.pid
 
-    return 'running ' + func_id + ' on ' + str(current_process.pid), 200
+        return 'running ' + func_id + ' on ' + str(current_process.pid), 200
 
 
 @api.route('/off', methods=['GET'])
@@ -59,7 +62,9 @@ def stop_process():
     if current_process is not None:
         api.logger.warn("killing process " + str(current_process.pid))
         os.kill(process_pid, signal.SIGKILL)
-        current_process.join(1)
-        if not current_process.is_alive():
-            current_process = None
-            process_pid = None
+        current_process.join(2)
+        if current_process.is_alive():
+            os.kill(process_pid, signal.SIGKILL)
+            current_process.join(2)
+        current_process = None
+        process_pid = None
