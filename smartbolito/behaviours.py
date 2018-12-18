@@ -1,9 +1,9 @@
-import board
 import os
-from time import sleep, time
-from neopixel import NeoPixel, RGB
 from random import randint
+from time import sleep
 
+import board
+from neopixel import NeoPixel, RGB
 
 NUM_LEDS = 50
 colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255),
@@ -43,7 +43,7 @@ def _get_random_color():
 def alarm():
     while True:
         for i in range(NUM_LEDS):
-            leds[i] = (0, 255, 0)
+            leds[i] = (255, 0, 0)
         leds.show()
         sleep(0.5)
         turn_off()
@@ -96,3 +96,22 @@ def sparkling():
             leds[i] = (255, 255, 255) if randint(0, 9) < 6 else (0, 0, 0)
             leds.show()
         sleep(0.01)
+
+
+@Behaviour("Misco")
+def misco():
+    while True:
+        leds.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
+        leds.show()
+        sleep(0.3)
+
+
+@Behaviour("Jones")
+def jones():
+    while True:
+        for i in range(NUM_LEDS):
+            turn_off()
+            leds[i] = (randint(0, 255), randint(0, 255), randint(0, 255))
+            leds.show()
+            sleep(i/1000)
+
