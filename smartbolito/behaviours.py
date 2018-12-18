@@ -100,9 +100,9 @@ def sparkling():
 
 @Behaviour("Misco")
 def fernando():
-    first = range(0, 255, 1)
+
     while True:
-        for i in first:
+        for i in range(0, 255, 1):
             leds[i] = (i, i, i)
             leds.show()
         sleep(0.01)
