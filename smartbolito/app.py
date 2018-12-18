@@ -30,6 +30,7 @@ def main():
 @api.route('/run', methods=['GET'])
 def run():
     func_id = request.args.get('func')
+    api.logger.info("[" + request.remote_addr + "] " + func_id)
     if not func_id:
         return 'Empty func parameter', 400
 
