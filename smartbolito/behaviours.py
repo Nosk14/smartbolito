@@ -103,15 +103,15 @@ def fernando():
     lista = range(0, 255, 1)
     while True:
         for i in lista:
-            leds.fill((0, 0, i))
+            leds.fill((0, 0, randint(0, 255)))
             leds.show()
         sleep(0.01)
         for i in lista:
-            leds.fill((0, i, 0))
+            leds.fill((0, randint(0, 255), 0))
             leds.show()
         sleep(0.01)
         for i in lista:
-            leds.fill((i, 0, 0))
+            leds.fill((randint(0, 255), 0, 0))
             leds.show()
         sleep(0.1)
 
