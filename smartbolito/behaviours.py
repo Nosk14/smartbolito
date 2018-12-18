@@ -100,16 +100,20 @@ def sparkling():
 
 @Behaviour("Misco")
 def fernando():
-    first = range(0, 255, 1)
-    second = range(0, 255, 1)
-    third = range(0, 255, 1)
+    lista = range(0, 255, 1)
     while True:
-        for i in first:
-            for j in second:
-                for k in third:
-                    leds.fill((k, j, i))
-                    leds.show()
-                sleep(0.01)
-            sleep(0.1)
+        for i in lista:
+            leds.fill((0, 0, i))
+            leds.show()
+        sleep(0.01)
+        for i in lista:
+            leds.fill((0, i, 0))
+            leds.show()
+        sleep(0.01)
+        for i in lista:
+            leds.fill((i, 0, 0))
+            leds.show()
         sleep(0.1)
+
+
 
