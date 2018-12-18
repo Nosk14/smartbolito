@@ -106,21 +106,36 @@ def misco():
         sleep(0.3)
 
 
-@Behaviour("Elver")
-def elver():
+@Behaviour("Jones")
+def jones():
     lista = range(255)
     while True:
+        colorA = randint(0, 255)
+        colorB = randint(0, 255)
         for i in lista:
-            leds.fill((0, 0, i))
+            leds.fill((colorA, colorB, i))
             leds.show()
         sleep(0.01)
         for i in lista:
-            leds.fill((0, i, 0))
+            leds.fill((colorA, i, colorB))
             leds.show()
         sleep(0.01)
         for i in lista:
-            leds.fill((i, 0, 0))
+            leds.fill((i, colorA, colorB))
             leds.show()
         sleep(0.1)
+
+
+@Behaviour("Tomas")
+def jones():
+    while True:
+        for i in range(255):
+            for j in range(255):
+                for k in range(255):
+                    leds.fill((i, j, k))
+                    leds.show()
+                sleep(0.01)
+            sleep(0.01)
+        sleep(0.2)
 
 
