@@ -96,3 +96,14 @@ def sparkling():
             leds[i] = (255, 255, 255) if randint(0, 9) < 6 else (0, 0, 0)
             leds.show()
         sleep(0.01)
+
+
+@Behaviour("fernando")
+def fernando():
+    while True:
+        for i in range(NUM_LEDS):
+            leds[i] = (100, 255, 0)
+        leds.show()
+        sleep(0.5)
+        turn_off()
+        sleep(0.5)
