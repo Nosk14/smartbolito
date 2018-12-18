@@ -110,18 +110,16 @@ def misco():
 def jones():
     lista = range(255)
     while True:
-        colorA = randint(0, 255)
-        colorB = randint(0, 255)
         for i in lista:
-            leds.fill((colorA, colorB, i))
+            leds.fill((0, 0, i))
             leds.show()
         sleep(0.01)
         for i in lista:
-            leds.fill((colorA, i, colorB))
+            leds.fill((0, i, 0))
             leds.show()
         sleep(0.01)
         for i in lista:
-            leds.fill((i, colorA, colorB))
+            leds.fill((i, 0, 0))
             leds.show()
         sleep(0.1)
 
@@ -135,7 +133,9 @@ def jones():
                     leds.fill((i, j, k))
                     leds.show()
                 sleep(0.01)
+            turn_off()
             sleep(0.01)
+        turn_off()
         sleep(0.2)
 
 
