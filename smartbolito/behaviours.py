@@ -107,7 +107,7 @@ def fernando():
         for i in first:
             for j in second:
                 for k in third:
-                    leds.fill((i, j, k))
+                    leds.fill((1, 1, k))
                     leds.show()
                 sleep(0.01)
             sleep(0.1)
