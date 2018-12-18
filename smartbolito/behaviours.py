@@ -103,8 +103,8 @@ def fernando():
     while True:
         for i in range(0, 255, 1):
             for j in range(0, 255, 1):
-                for k in range(0, 255 ,1):
-                    leds[i] = (i, j, k)
+                for k in range(0, 255, 1):
+                    leds.fill((i, j, k))
                     leds.show()
                 sleep(0.01)
             sleep(0.1)
