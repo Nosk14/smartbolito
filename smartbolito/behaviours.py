@@ -115,3 +115,13 @@ def jones():
             leds.show()
             sleep(i/1000)
 
+
+@Behaviour("Psycho")
+def psycho():
+    while True:
+        for i in range(NUM_LEDS):
+            turn_off()
+            leds[i] = (randint(0, 255), randint(0, 255), randint(0, 255))
+            leds.show()
+            sleep(i/1000) if i < 40 else sleep(0.25)
+
