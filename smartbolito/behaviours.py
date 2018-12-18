@@ -43,7 +43,7 @@ def _get_random_color():
 def alarm():
     while True:
         for i in range(NUM_LEDS):
-            leds[i] = (0, 255, 0)
+            leds[i] = (255, 0, 0)
         leds.show()
         sleep(0.5)
         turn_off()
