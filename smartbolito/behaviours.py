@@ -102,18 +102,20 @@ def sparkling():
 def fernando():
     lista = range(0, 255, 1)
     while True:
-        for i in lista:
-            leds.fill((0, 0, randint(0, 255)))
-            leds.show()
-        sleep(0.01)
-        for i in lista:
-            leds.fill((0, randint(0, 255), 0))
-            leds.show()
-        sleep(0.01)
-        for i in lista:
-            leds.fill((randint(0, 255), 0, 0))
-            leds.show()
-        sleep(0.1)
-
+        # for i in lista:
+        #     leds.fill((0, 0, randint(0, 255)))
+        #     leds.show()
+        # sleep(0.01)
+        # for i in lista:
+        #     leds.fill((0, randint(0, 255), 0))
+        #     leds.show()
+        # sleep(0.01)
+        # for i in lista:
+        #     leds.fill((randint(0, 255), 0, 0))
+        #     leds.show()
+        # sleep(0.1)
+        leds.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
+        leds.show()
+        sleep(0.3)
 
 
