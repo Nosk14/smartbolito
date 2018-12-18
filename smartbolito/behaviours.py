@@ -102,10 +102,11 @@ def sparkling():
 def fernando():
     first = range(0, 255, 1)
     second = range(0, 255, 1)
+    third = range(0, 255, 1)
     while True:
         for i in first:
             for j in second:
-                for k in range(0, 255, 1):
+                for k in third:
                     leds.fill((i, j, k))
                     leds.show()
                 sleep(0.01)
