@@ -104,7 +104,7 @@ def fernando():
     while True:
         for i in first:
             leds[i] = (i, i, i)
-        leds.show()
-        sleep(0.5)
-        turn_off()
-        sleep(0.5)
+            leds.show()
+            sleep(0.5)
+            turn_off()
+            sleep(0.5)
