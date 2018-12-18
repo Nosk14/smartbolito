@@ -99,23 +99,28 @@ def sparkling():
 
 
 @Behaviour("Misco")
-def fernando():
-    lista = range(0, 255, 1)
+def misco():
     while True:
-        # for i in lista:
-        #     leds.fill((0, 0, randint(0, 255)))
-        #     leds.show()
-        # sleep(0.01)
-        # for i in lista:
-        #     leds.fill((0, randint(0, 255), 0))
-        #     leds.show()
-        # sleep(0.01)
-        # for i in lista:
-        #     leds.fill((randint(0, 255), 0, 0))
-        #     leds.show()
-        # sleep(0.1)
         leds.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
         leds.show()
         sleep(0.3)
+
+
+@Behaviour("Elver")
+def elver():
+    lista = range(255)
+    while True:
+        for i in lista:
+            leds.fill((0, 0, i))
+            leds.show()
+        sleep(0.01)
+        for i in lista:
+            leds.fill((0, i, 0))
+            leds.show()
+        sleep(0.01)
+        for i in lista:
+            leds.fill((i, 0, 0))
+            leds.show()
+        sleep(0.1)
 
 
