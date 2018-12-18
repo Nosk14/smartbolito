@@ -77,6 +77,15 @@ def random_blink():
         turn_off()
         sleep(0.5)
 
+@Behaviour("Random color trail")
+def random_color_trail():
+    while True:
+        trail_color = _get_random_color()
+        for i in range(NUM_LEDS):
+            turn_off()
+            leds[i] = trail_color
+            leds.show()
+            sleep(0.1)
 
 @Behaviour("Sparkling")
 def sparkling():
@@ -99,6 +108,3 @@ def snake():
         leds.show()
         sleep(0.2)
         i = (i+1) % NUM_LEDS
-
-
-
