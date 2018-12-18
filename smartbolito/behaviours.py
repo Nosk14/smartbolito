@@ -45,9 +45,9 @@ def alarm():
         for i in range(NUM_LEDS):
             leds[i] = (0, 255, 0)
         leds.show()
-        sleep(1)
+        sleep(0.5)
         turn_off()
-        sleep(1)
+        sleep(0.5)
 
 
 @Behaviour("Random")
@@ -77,6 +77,7 @@ def random_blink():
         turn_off()
         sleep(0.5)
 
+
 @Behaviour("Random color trail")
 def random_color_trail():
     while True:
@@ -87,24 +88,11 @@ def random_color_trail():
             leds.show()
             sleep(0.1)
 
+
 @Behaviour("Sparkling")
 def sparkling():
     while True:
         for i in range(NUM_LEDS):
-            leds[i] = (255, 255, 255) if randint(0,9) < 6 else (0, 0, 0)
+            leds[i] = (255, 255, 255) if randint(0, 9) < 6 else (0, 0, 0)
             leds.show()
-        sleep(0.1)
-
-
-@Behaviour("Snake")
-def snake():
-    snake_len = 4
-    i = 0
-    while True:
-        turn_off()
-        for i in range(i, i + snake_len):
-            index = i % NUM_LEDS
-            leds[index] = (255, 0, 255)
-        leds.show()
-        sleep(0.2)
-        i = (i+1) % NUM_LEDS
+        sleep(0.01)
