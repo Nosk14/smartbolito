@@ -1,9 +1,9 @@
-import board
 import os
-from time import sleep, time
-from neopixel import NeoPixel, RGB
 from random import randint
+from time import sleep
 
+import board
+from neopixel import NeoPixel, RGB
 
 NUM_LEDS = 50
 colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255),
@@ -110,6 +110,7 @@ def misco():
 def jones():
     while True:
         for i in range(NUM_LEDS):
+            turn_off()
             leds[i] = (randint(0, 255), randint(0, 255), randint(0, 255))
             leds.show()
             sleep(i/1000)
