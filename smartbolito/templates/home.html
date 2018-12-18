@@ -16,6 +16,20 @@
         background-size: cover;
     }
 
+    header {
+        padding: 50px
+    }
+
+    .grid-container {
+         display: grid;
+         grid-column-gap: 10px;
+         grid-row-gap: 10px;
+         grid-template-columns: auto auto auto auto;
+         padding-left: 20%;
+         padding-right: 20%;
+         padding-top: 20px;
+     }
+
     </style>
 
     <script>
@@ -44,23 +58,14 @@
     <title>Smartbolito de Navidad</title>
 </head>
 <body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <img src="https://i.imgur.com/4IrDJuf.png" alt="Smartbolito de Navidad">
-    <br>
+<header>
+<img src="https://i.imgur.com/4IrDJuf.png" alt="Smartbolito de Navidad">
+</header>
     <button type="button" class="btn btn-primary btn-lg" onclick="turnOff()">Turn OFF</button>
-    <br>
-    <br>
-    <br>
-    <br>
-    {% for behaviour in behaviours %}
-        <button type="button" class="btn btn-success btn-lg" onclick="sendRequest('{{ behaviour.function_name }}')">{{ behaviour.name }}</button>
-    {% endfor %}
+    <div class="grid-container">
+        {% for behaviour in behaviours %}
+            <button type="button" class="btn btn-success btn-lg" onclick="sendRequest('{{ behaviour.function_name }}')">{{ behaviour.name }}</button>
+        {% endfor %}
+    </div>
 </body>
 </html>
