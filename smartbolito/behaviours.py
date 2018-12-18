@@ -1,7 +1,7 @@
 import board
 import os
 from time import sleep, time
-from neopixel import NeoPixel, GRB
+from neopixel import NeoPixel, RGB
 from random import randint
 
 
@@ -10,7 +10,7 @@ colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255),
           (255, 255, 0), (255, 0, 255), (0, 255, 255)]
 
 behaviours = []
-leds = NeoPixel(board.D18, NUM_LEDS, auto_write=False, pixel_order=GRB, brightness=float(os.getenv("BRIGHTNESS", "0.2")))
+leds = NeoPixel(board.D18, NUM_LEDS, auto_write=False, pixel_order=RGB, brightness=float(os.getenv("BRIGHTNESS", "0.2")))
 
 
 class Behaviour:
@@ -86,3 +86,25 @@ def random_color_trail():
             leds[i] = trail_color
             leds.show()
             sleep(0.1)
+
+@Behaviour("Sparkling")
+def sparkling():
+    while True:
+        for i in range(NUM_LEDS):
+            leds[i] = (255, 255, 255) if randint(0,9) < 6 else (0, 0, 0)
+            leds.show()
+        sleep(0.1)
+
+
+@Behaviour("Snake")
+def snake():
+    snake_len = 4
+    i = 0
+    while True:
+        turn_off()
+        for i in range(i, i + snake_len):
+            index = i % NUM_LEDS
+            leds[index] = (255, 0, 255)
+        leds.show()
+        sleep(0.2)
+        i = (i+1) % NUM_LEDS
