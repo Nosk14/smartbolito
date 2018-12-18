@@ -110,7 +110,7 @@ def misco():
 def jones():
     while True:
         for i in range(NUM_LEDS):
-            leds[i]((randint(0, 255), randint(0, 255), randint(0, 255)))
+            leds[i] = (randint(0, 255), randint(0, 255), randint(0, 255))
             leds.show()
             sleep(i/1000)
 
