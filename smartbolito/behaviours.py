@@ -125,3 +125,20 @@ def psycho():
             leds.show()
             sleep(i/1000) if i < 40 else sleep(0.25)
 
+
+@Behaviour("Daily Timer")
+def daily_timer():
+    daily_duration = float(15 * 60)
+    time_per_led = daily_duration / NUM_LEDS
+    turn_off()
+    for i in range(NUM_LEDS):
+        leds[i] = (255, 255, 255)
+        leds.show()
+        sleep(time_per_led)
+    while True:
+        leds.fill((255, 0, 0))
+        leds.show()
+        sleep(0.25)
+        turn_off()
+        sleep(0.25)
+
